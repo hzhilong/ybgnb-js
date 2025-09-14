@@ -1,0 +1,68 @@
+{
+  "compilerOptions": {
+    /* 项目选项 */
+    // 编译目标 JavaScript 版本。根据你的库的目标环境选择，通常选择一个兼容性较好的版本。
+    "target": "ESNext",
+    // 输出的模块格式。CommonJS 是 Node.js 的标准，也是许多打包工具（如 Webpack, Rollup）能够理解的。
+    // 如果你的库主要用于打包工具，esnext 可能会更高效。先用 commonjs 作为主要输出通常是安全的。
+    "module": "ESNext",
+    // 包含的标准库类型定义。确保包含你的代码运行时环境提供的全局 API 的类型。
+    // - es2016 或更高版本：包含 Promise, Map, Set 等 ES 特性。
+    // - dom：包含 setTimeout, console, window, document 等浏览器全局 API。
+    // - node：如果你在库中使用了 Node.js 特有 API (如 fs, path, process 等)，需要安装 @types/node 并确保这里或通过 @types 自动引入。
+    "lib": [
+      "ESNext"
+    ],
+    // 根据你实际使用的全局 API 调整
+
+    // 输出目录：指定编译生成的 JavaScript 和声明文件存放的位置。通常是项目根目录下的 'dist' 文件夹。
+    "outDir": "./dist",
+    // 源文件根目录：指定 TypeScript 源文件所在的根目录。编译器会保持这个目录下的文件结构在 outDir 中重现。
+    // 例如，如果源文件是 src/utils/index.ts，outDir 是 ./dist，rootDir 是 ./src，则输出文件是 dist/utils/index.js 和 dist/utils/index.d.ts。
+    "rootDir": "./src",
+    // **核心：生成类型声明文件 (.d.ts)。这是其他项目获取类型提示的关键！**
+    "declaration": true,
+    // 可选：如果想将所有的 .d.ts 文件集中存放到 outDir 下的某个子目录，可以使用 declarationDir。
+    // "declarationDir": "./dist/types", // 如果设置了这个，package.json 中的 types 字段也要指向这个子目录
+    "emitDeclarationOnly": false,
+    // Vite 会处理 JS 的转换，这里设为 false
+    "declarationDir": "dist",
+    // 声明文件生成的目录
+    "isolatedModules": true,
+    // 保持 Vite 的默认建议
+
+    // 生成 Source Map 文件，便于调试编译后的代码。
+    "sourceMap": true,
+    /* 模块解析选项 */
+    // 模块解析策略。使用 Node.js 风格的模块查找方式，包括查找 node_modules 目录。
+    // 这是确保 npm link 能够让其他项目正确找到你的库的关键。
+    "moduleResolution": "node",
+    /* 严格性检查选项 (强烈推荐开启) */
+    "strict": true,
+    // 开启所有严格的类型检查，能帮助你编写更健壮的代码
+    "esModuleInterop": true,
+    // 允许从 CommonJS 模块中以 ES Modules 方式导入 default export
+    "forceConsistentCasingInFileNames": true,
+    // 强制文件名大小写一致
+    "skipLibCheck": true
+
+    /* 其他常用选项 */
+    // "skipLibCheck": true, // 可选：跳过依赖库的类型检查，有时可以解决依赖包的类型问题
+
+    /* 路径映射 (baseUrl/paths) - 通常不用于库本身对外的配置，除非库内部使用别名 */
+    // 如果你在库内部使用了路径别名（例如 import '@utils/...'），才需要在这里配置 baseUrl 和 paths。
+    // 注意不要让这里的配置干扰到 node_modules 的查找。
+    // "baseUrl": "./src",
+    // "paths": { "@utils/*": ["utils/*"] }
+  },
+  // --- 文件和目录包含/排除 ---
+  "include": [
+    "src"
+  ],
+  // 确保只包含 src 目录下的文件
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+  // 排除不需要处理的目录
+}

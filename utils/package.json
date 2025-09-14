@@ -1,0 +1,47 @@
+{
+  "name": "@ybgnb/utils",
+  "version": "1.0.0",
+  "author": "hzhilong",
+  "description": "自用工具库",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "generate-barrels": "",
+    "build": "barrelsby -c barrelsby.json --delete --noHeader && vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hzhilong/ybgnb-js",
+    "directory": "utils"
+  },
+  "keywords": [
+    "ybgnb"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hzhilong/ybgnb-js/issues"
+  },
+  "homepage": "https://github.com/hzhilong/ybgnb-js#readme",
+  "devDependencies": {
+    "barrelsby": "^2.8.1",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.8.3",
+    "vite": "^7.1.5",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "peerDependencies": {
+    "dayjs": "^1.11.13",
+    "nanoid": "^5.1.5"
+  }
+}
