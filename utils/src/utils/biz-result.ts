@@ -45,7 +45,7 @@ export class BizResult<T> {
  * 执行业务（自动包裹BuResult）
  * @param run 执行方法
  */
-export const execBusiness = async <T>(run: () => Promise<T>): Promise<BizResult<T>> => {
+export const execBiz = async <T>(run: () => Promise<T>): Promise<BizResult<T>> => {
   try {
     return BizResult.createSuccess<T>(await run())
   } catch (e) {

@@ -1,6 +1,6 @@
 {
   "name": "@ybgnb/utils",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "author": "hzhilong",
   "description": "自用工具库",
   "main": "dist/index.umd.js",
@@ -17,7 +17,6 @@
     "dist"
   ],
   "scripts": {
-    "generate-barrels": "",
     "build": "barrelsby -c barrelsby.json --delete --noHeader && vite build"
   },
   "repository": {
