@@ -1,37 +1,34 @@
 {
   "compilerOptions": {
     // ================== 代码目标与模块 ==================
-    "target": "ESNext",                  // 编译输出的 JS 版本
-    "module": "ESNext",                  // 模块系统
-    "moduleResolution": "node",          // 模块解析策略
-    "lib": ["ESNext"],                    // 内置库类型
-
-    // ================== 输出目录与声明文件 ==================
-    "rootDir": "./src",                   // 输入目录
-    "outDir": "./dist",                   // 输出目录
-    "declaration": true,                  // 生成 .d.ts 文件
-    "declarationDir": "dist",             // 声明文件输出目录
-    "emitDeclarationOnly": false,         // 是否只输出声明文件
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ESNext"],
 
     // ================== 类型检查 ==================
     "strict": true,                        // 严格模式
-    "importsNotUsedAsValues": "error",     // 类型导入必须使用 type
+    "verbatimModuleSyntax": true,          // 类型导入必须使用 type
     "isolatedModules": true,               // 每个文件单独编译
     "skipLibCheck": true,                  // 跳过依赖库类型检查
     "forceConsistentCasingInFileNames": true, // 文件名大小写一致检查
 
     // ================== 兼容性与互操作 ==================
     "esModuleInterop": true,               // CommonJS 和 ES 模块互操作
+    "noEmit": true,                        // 不输出编译结果
     "allowImportingTsExtensions": true,    // 允许导入 .ts/.tsx 文件扩展名
 
     // ================== 调试 ==================
     "sourceMap": true                      // 生成 source map
   },
   "include": [
-    "src"
+    "*.ts",
+    "src",
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    ".yalc",
+    "yalc.lock"
   ]
 }
