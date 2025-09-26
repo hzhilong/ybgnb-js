@@ -28,7 +28,7 @@ export class BaseUtils {
    */
   static prependErrorMessage(error: CommonError, preMsg?: string): CommonError {
     if (preMsg) {
-      error.message = `${preMsg}${error.message}`
+      error.message = `${preMsg} ${error.message}`
     }
     return error
   }

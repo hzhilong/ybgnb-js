@@ -1,11 +1,15 @@
+import {BaseUtils} from "../utils/base-utils.ts";
+
 /**
  * 通用异常
  */
 export class CommonError {
   message: string;
+  error?: unknown;
 
-  constructor(message: string) {
-    this.message = message;
+  constructor(message: string, error?: unknown) {
+    this.message = error ? `${message} ${BaseUtils.getErrorMessage(error)}` : message;
+    this.error = error;
   }
 }
 

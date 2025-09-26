@@ -29,7 +29,8 @@ export default defineConfig({
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {
-          dayjs: 'dayjs'
+          dayjs: 'dayjs',
+          nanoid: 'nanoid',
         },
       },
     },

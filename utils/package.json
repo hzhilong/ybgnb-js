@@ -23,7 +23,8 @@
     "build": "barrelsby -c barrelsby.json --delete --noHeader && vite build",
     "npm 登录": " npm login",
     "npm 发布": " npm publish --access public",
-    "本地发布": "yalc publish"
+    "本地发布": "yalc publish",
+    "本地构建并发布": "barrelsby -c barrelsby.json --delete --noHeader && vite build --mode library && yalc publish"
   },
   "repository": {
     "type": "git",
