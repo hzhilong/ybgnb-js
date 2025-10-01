@@ -14,7 +14,7 @@ export class CommonError {
 }
 
 /**
- * 终止异常
+ * 中止异常
  */
 export class AbortedError extends CommonError {
   constructor() {
