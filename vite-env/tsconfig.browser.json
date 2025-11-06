@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.common.json",
+  "compilerOptions": {
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+  },
+  "include": [
+    "src/common/**/*",
+    "src/browser/**/*",
+    "src/main.ts",
+    "src/env.d.ts",
+  ],
+}

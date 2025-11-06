@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.common.json",
+  "compilerOptions": {
+    "types": [
+      "node"
+    ],
+  },
+  "include": [
+    "src/common/**/*",
+    "src/node/**/*",
+    "vite.config.ts",
+    "rollup.config.ts",
+    "eslint.config.ts",
+    "dev.vite.config.ts",
+  ],
+}
