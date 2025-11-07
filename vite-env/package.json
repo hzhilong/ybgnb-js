@@ -23,8 +23,7 @@
   },
   "types": "./dist/env.d.ts",
   "files": [
-    "dist",
-    "src/env.d.ts"
+    "dist"
   ],
   "scripts": {
     "类型检查": "tsc --noEmit",
