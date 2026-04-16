@@ -2,18 +2,13 @@
   "compilerOptions": {
     "rootDir": "src",
     // ================== 代码目标与模块 ==================
-    "target": "ES2015",
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
-    "lib": [
-      "ES2015",
-      "DOM"
-    ],
-    // 生成 .d.ts
-    "declaration": true,
-    "declarationMap": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ESNext", "DOM"],
     "outDir": "./dist",
     "strict": true,
+    "esModuleInterop": true,
     // 类型导入必须使用 type
     "verbatimModuleSyntax": true,
     // 每个文件单独编译
@@ -29,13 +24,6 @@
     // 实验性装饰器
     "experimentalDecorators": false
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".yalc",
-    "yalc.lock"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", ".yalc", "yalc.lock"]
 }

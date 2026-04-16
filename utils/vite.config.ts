@@ -14,6 +14,8 @@ export default defineConfig((_configEnv: ConfigEnv) => {
         outDir: 'dist',
         // 入口文件的根路径
         entryRoot: 'src',
+        // 将所有声明合并到一个文件中
+        rollupTypes: true,
       }),
     ],
     build: {
@@ -40,7 +42,7 @@ export default defineConfig((_configEnv: ConfigEnv) => {
         // 不想打包进库的依赖
         external: ['nanoid', 'dayjs'],
         output: {
-          // 保持目录结构
+          // 不保留目录结构
           preserveModules: false,
           // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
           globals: {
