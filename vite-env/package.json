@@ -26,13 +26,11 @@
     "dist"
   ],
   "scripts": {
-    "类型检查": "tsc --noEmit",
-    "代码检查": "eslint .",
-    "npm 登录": " npm login",
-    "npm 发布": " npm publish --access public",
-    "本地发布": "yalc publish",
-    "构建": "rollup -c rollup.config.mjs",
-    "本地构建并发布": "rollup -c rollup.config.mjs && yalc publish"
+    "check": "tsc --noEmit && eslint .",
+    "lint": "eslint . --fix",
+    "npm login": " npm login",
+    "npm publish": " npm publish --access public",
+    "build": "rollup -c rollup.config.mjs"
   },
   "repository": {
     "type": "git",

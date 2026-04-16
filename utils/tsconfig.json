@@ -1,29 +1,42 @@
 {
   "compilerOptions": {
-    // ================== 代码目标与模块 ==================
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "lib": ["ESNext", "dom"],
-
-    // ================== 类型检查 ==================
-    "strict": true,                        // 严格模式
-    "verbatimModuleSyntax": true,          // 类型导入必须使用 type
-    "isolatedModules": true,               // 每个文件单独编译
-    "skipLibCheck": true,                  // 跳过依赖库类型检查
-    "forceConsistentCasingInFileNames": true, // 文件名大小写一致检查
-
-    // ================== 兼容性与互操作 ==================
-    "esModuleInterop": true,               // CommonJS 和 ES 模块互操作
-    "noEmit": true,                        // 不输出编译结果
-    "allowImportingTsExtensions": true,    // 允许导入 .ts/.tsx 文件扩展名
-
-    // ================== 调试 ==================
-    "sourceMap": true                      // 生成 source map
+    // 指定源码根目录
+    "rootDir": "src",
+    // 设置编译目标 ECMAScript 版本
+    "target": "ES2020",
+    // 指定生成模块代码的格式，使用 Node.js 原生 ES 模块
+    "module": "NodeNext",
+    // 决定模块解析策略，与 module: NodeNext 配套使用
+    "moduleResolution": "NodeNext",
+    // 编译时包含的库文件列表
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    // 生成对应的 .d.ts 声明文件
+    "declaration": true,
+    // 为声明文件生成对应的 sourcemap
+    "declarationMap": true,
+    // 编译输出目录
+    "outDir": "./dist",
+    // 启用所有严格的类型检查选项
+    "strict": true,
+    // 强制使用 `import type` 导入类型，禁止值导入与类型导入混用
+    "verbatimModuleSyntax": true,
+    // 确保每个文件可被独立编译（适用于非 tsc 转译器）
+    "isolatedModules": true,
+    // 跳过声明文件的类型检查，提升编译速度
+    "skipLibCheck": true,
+    // 强制要求文件名的大小写与实际文件一致
+    "forceConsistentCasingInFileNames": true,
+    // 生成对应的 .map.js sourcemap 文件
+    "sourceMap": true,
+    // 是否启用实验性的装饰器语法
+    "experimentalDecorators": false
   },
   "include": [
-    "*.ts",
     "src",
+    "tests"
   ],
   "exclude": [
     "node_modules",

@@ -1,5 +1,5 @@
-import { CommonError } from '../types/error'
-import { BaseUtils } from './base-utils'
+import {CommonError} from "./error.js";
+import {getErrorMessage} from "../utils/error.js";
 
 /**
  * 业务执行结果
@@ -24,7 +24,7 @@ export class BizResult<T> {
   }
 
   static createError<T>(e: unknown) {
-    return new BizResult<T>(false, BaseUtils.getErrorMessage(e))
+    return new BizResult<T>(false, getErrorMessage(e))
   }
 
   /**

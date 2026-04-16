@@ -15,8 +15,8 @@ interface NetworkInformation extends EventTarget {
  */
 export type NetworkInfo = 'offline' | Omit<NetworkInformation, keyof EventTarget> | 'online'
 
-function isConnection(obj: any): obj is NetworkInformation {
-  return obj && typeof obj === 'object' && 'downlink' in obj && 'rtt' in obj && 'effectiveType' in obj;
+function isConnection(obj: unknown): obj is NetworkInformation {
+  return obj !== null && typeof obj === 'object' && 'downlink' in obj && 'rtt' in obj && 'effectiveType' in obj;
 }
 
 /**
@@ -54,7 +54,7 @@ export function onNetworkChange(listener: (info: NetworkInfo) => void) {
 
   if ('connection' in navigator && isConnection(navigator.connection)) {
     // 现代 Web API
-    let connection = navigator.connection;
+    const connection = navigator.connection;
     connection.addEventListener('change', handleChange)
     return () => connection.removeEventListener('change', handleChange);
   } else {

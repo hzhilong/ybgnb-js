@@ -31,6 +31,7 @@ export function onVisibilityChange(listener: VisibilityChangeListener) {
   }
 
   const handler = () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     listener(document[hiddenPropName]);
   };

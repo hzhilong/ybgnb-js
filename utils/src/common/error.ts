@@ -1,4 +1,4 @@
-import {BaseUtils} from "../utils/base-utils.ts";
+import {getErrorMessage} from "../utils/error.js";
 
 /**
  * 通用异常
@@ -8,7 +8,7 @@ export class CommonError {
   error?: unknown;
 
   constructor(message: string, error?: unknown) {
-    this.message = error ? `${message} ${BaseUtils.getErrorMessage(error)}` : message;
+    this.message = error ? `${message} ${getErrorMessage(error)}` : message;
     this.error = error;
   }
 }
