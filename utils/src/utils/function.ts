@@ -38,7 +38,7 @@ export async function processRangeInBatches(
   start: number,
   end: number,
   batchSize: number,
-  processor: (batch: number[]) => Promise<void>
+  processor: (batch: number[]) => Promise<void>,
 ): Promise<void> {
   for (let current = start; current <= end; current += batchSize) {
     const remaining = end - current + 1
@@ -48,4 +48,3 @@ export async function processRangeInBatches(
     await processor(batch)
   }
 }
-

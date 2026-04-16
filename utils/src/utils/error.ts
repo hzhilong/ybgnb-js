@@ -1,4 +1,4 @@
-import {CommonError} from '../common/error.js';
+import { CommonError } from '../common/error.js'
 
 /**
  * 判断是否为通用异常
@@ -43,11 +43,8 @@ export function convertToCommonError(error: unknown, preMsg?: string): CommonErr
 }
 
 /**
- * 获取错误信息
+ * 获取异常信息
  */
 export function getErrorMessage(error: unknown): string {
   return convertToCommonError(error).message
 }
-
-
-

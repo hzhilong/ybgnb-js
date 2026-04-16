@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
 
 /**
  * 格式化时间为 2020-02-02 20:20:20 的字符串
@@ -7,7 +7,6 @@ import dayjs from "dayjs";
 export function getFormattedDateTime(date?: Date): string {
   return dayjs(date).format('YYYY-MM-DD HH:mm:ss')
 }
-
 
 /**
  * 格式化时间为 20:20:20 的字符串

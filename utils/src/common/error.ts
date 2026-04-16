@@ -1,23 +1,26 @@
-import {getErrorMessage} from "../utils/error.js";
+import { getErrorMessage } from '../utils/error.js'
 
 /**
  * 通用异常
  */
-export class CommonError {
-  message: string;
-  error?: unknown;
+export class CommonError extends Error {
+  // 异常信息
+  message: string
+  // 原始异常
+  rawError?: Error
 
-  constructor(message: string, error?: unknown) {
-    this.message = error ? `${message} ${getErrorMessage(error)}` : message;
-    this.error = error;
+  constructor(message: string, rawError?: Error) {
+    super(message)
+    this.message = rawError ? `${message} ${getErrorMessage(rawError)}` : message
+    this.rawError = rawError
   }
 }
 
 /**
  * 中止异常
  */
-export class AbortedError extends CommonError {
+export class AbortError extends CommonError {
   constructor() {
-    super("操作已取消");
+    super('操作已取消')
   }
 }

@@ -1,5 +1,5 @@
-import {CommonError} from "./error.js";
-import {getErrorMessage} from "../utils/error.js";
+import { CommonError } from './error.js'
+import { getErrorMessage } from '../utils/error.js'
 
 /**
  * 业务执行结果

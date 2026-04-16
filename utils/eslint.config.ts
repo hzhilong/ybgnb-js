@@ -1,7 +1,7 @@
 import tsESLint from 'typescript-eslint'
 import prettier from 'eslint-config-prettier'
-import type {Linter} from 'eslint'
-import {globalIgnores} from 'eslint/config'
+import type { Linter } from 'eslint'
+import { globalIgnores } from 'eslint/config'
 
 const config: Linter.Config[] = [
   ...tsESLint.configs.recommended,
@@ -11,7 +11,7 @@ const config: Linter.Config[] = [
     rules: {
       '@typescript-eslint/no-unused-vars': [
         'error',
-        {argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_'},
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
       ],
     },
   },

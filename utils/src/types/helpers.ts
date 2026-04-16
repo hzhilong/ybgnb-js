@@ -5,8 +5,8 @@
  */
 export type ExtractGetterProperties<T> = {
   [K in keyof T as K extends `get${infer Rest}` ? Uncapitalize<Rest> : never]: T[K] extends (
-      ...args: any[]
-    ) => Promise<infer R>
+    ...args: any[]
+  ) => Promise<infer R>
     ? R
     : never
 }
