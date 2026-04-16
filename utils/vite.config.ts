@@ -8,11 +8,8 @@ export default defineConfig((_configEnv: ConfigEnv) => {
     plugins: [
       // 生成 .d.ts 类型文件
       dts({
-        // 指定 tsconfig.json 的路径
         tsconfigPath: 'tsconfig.app.json',
-        // 输出目录
         outDir: 'dist',
-        // 入口文件的根路径
         entryRoot: 'src',
         // 将所有声明合并到一个文件中
         rollupTypes: true,
@@ -38,15 +35,14 @@ export default defineConfig((_configEnv: ConfigEnv) => {
         },
       },
       sourcemap: true,
-      rollupOptions: {
+      rolldownOptions: {
         // 不想打包进库的依赖
-        external: ['nanoid', 'dayjs'],
+        external: ['dayjs'],
         output: {
           // 不保留目录结构
           preserveModules: false,
           // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
           globals: {
-            nanoid: 'nanoid',
             dayjs: 'dayjs',
           },
         },

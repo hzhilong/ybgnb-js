@@ -1,6 +1,6 @@
 {
   "name": "@ybgnb/utils",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "author": "hzhilong",
   "private": false,
   "description": "自用工具库",
@@ -52,7 +52,6 @@
     "vite-plugin-dts": "^4.5.4"
   },
   "peerDependencies": {
-    "dayjs": "^1.11.13",
-    "nanoid": "^5.1.9"
+    "dayjs": "^1.11.13"
   }
 }

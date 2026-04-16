@@ -9,7 +9,6 @@ export * from "./utils/array";
 export * from "./utils/error";
 export * from "./utils/function";
 export * from "./utils/github";
-export * from "./utils/id";
 export * from "./utils/network";
 export * from "./utils/random";
 export * from "./utils/sleep";
