@@ -1,50 +1,45 @@
-import { CommonError } from '../common/error.js'
+import { CommonError, AbortError } from '../common/error.js'
 
-/**
- * 判断是否为通用异常
- */
 export function isCommonError(error: unknown): error is CommonError {
-  return error instanceof CommonError
+  return error instanceof CommonError || (error instanceof Error && error.name === 'CommonError')
+}
+
+export function isAbortError(error: unknown): error is AbortError {
+  return error instanceof AbortError || (error instanceof Error && error.name === 'AbortError')
 }
 
 /**
  * 设置异常信息的前置提示
- * @param error 异常
- * @param preMsg  前置信息  `${preMsg}${error.message}`
  */
-export function prependErrorMessage(error: CommonError, preMsg?: string): CommonError {
-  if (preMsg) {
-    error.message = `${preMsg} ${error.message}`
-  }
+function withPrefixedMessage(error: CommonError, prefix?: string): CommonError {
+  if (!prefix) return error
+
+  error.message = `${prefix} ${error.message}`
   return error
 }
 
 /**
  * 转换到通用异常
- * @param error 异常
- * @param preMsg  前置提示 `${preMsg}${error.message}`
  */
-export function convertToCommonError(error: unknown, preMsg?: string): CommonError {
+export function convertToCommonError(error: unknown, prefix?: string) {
   if (isCommonError(error)) {
-    return prependErrorMessage(error, preMsg)
+    return withPrefixedMessage(error, prefix)
   }
-  if (
-    typeof error === 'object' &&
-    error !== null &&
-    'message' in error &&
-    typeof (error as Record<string, unknown>).message === 'string'
-  ) {
-    const newError = error as { message: string }
-    return prependErrorMessage(new CommonError(newError.message), preMsg)
-  } else {
-    // 如果抛出的异常不是object
-    return prependErrorMessage(new CommonError(String(error)), preMsg)
-  }
+  return new CommonError(`${prefix} ${getErrorMessage(error)}`, error)
 }
 
 /**
  * 获取异常信息
  */
 export function getErrorMessage(error: unknown): string {
-  return convertToCommonError(error).message
+  if (typeof error === 'string') {
+    return error
+  }
+  if (error instanceof Error) {
+    return error.message
+  }
+  if (error && typeof error === 'object' && 'message' in error && typeof error.message === 'string') {
+    return error.message
+  }
+  return String(error) ?? '未知错误'
 }

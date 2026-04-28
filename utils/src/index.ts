@@ -11,6 +11,7 @@ export * from "./utils/function";
 export * from "./utils/github";
 export * from "./utils/network";
 export * from "./utils/random";
+export * from "./utils/serialize";
 export * from "./utils/sleep";
 export * from "./utils/time";
 export * from "./utils/url";

@@ -1,6 +1,6 @@
 {
   "name": "@ybgnb/utils",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "hzhilong",
   "private": false,
   "description": "自用工具库",
@@ -39,7 +39,7 @@
   "bugs": {
     "url": "https://github.com/hzhilong/ybgnb-js/issues"
   },
-  "homepage": "https://github.com/hzhilong/ybgnb-js#readme",
+  "homepage": "https://github.com/hzhilong/ybgnb-js/tree/main/utils#readme",
   "devDependencies": {
     "barrelsby": "^2.8.1",
     "eslint": "^9.39.4",
