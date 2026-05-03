@@ -62,3 +62,10 @@ export type MethodReturn<T> = T extends (...args: any[]) => infer R ? R : never
 export type FunctionKeys<T> = {
   [K in keyof T]: T[K] extends AnyFn ? K : never
 }[keyof T]
+
+/**
+ * 拥有指定键集合的对象类型
+ */
+export type ObjectWithKeys<K extends string | symbol> = {
+  [key in K]: any
+}

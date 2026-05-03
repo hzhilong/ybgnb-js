@@ -1,10 +1,16 @@
-import type { ParsedUrl } from '../types/utl.js'
-
 /** URL query 中必须编码的保留字符 (RFC 3986) */
 export const invalidCharRegex = /[!'()*]/g
 
 /** 查询参数 */
 export type QueryParams = Record<string, string | number | boolean | null | undefined>
+
+/**
+ * 已解析的 url
+ */
+export interface ParsedUrl {
+  baseUrl: string
+  searchParams: URLSearchParams
+}
 
 /**
  * 判断字符串是否为有效的 HTTP/HTTPS URL
@@ -37,20 +43,22 @@ export function parseUrl(url: string): ParsedUrl {
 
 /**
  * 编码 URL 参数
- * @param params 查询参数
+ * @param params          查询参数
+ * @param keepEmptyValues 保留 null/undefined的值（空字符串）
  */
-export function encodeURLParams(params: QueryParams) {
+export function encodeURLParams(params: QueryParams, keepEmptyValues: boolean = false) {
   return (
     Object.keys(params)
       // 排序
       .sort()
+      // 过滤
+      .filter((key) => {
+        return keepEmptyValues || params[key] != null
+      })
       // 编码 key 和 value
       .map((key) => {
-        const raw = params[key]
-        if (raw === undefined || raw === null) return ''
-
-        const value = String(raw).replace(invalidCharRegex, '')
-        return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+        const raw = params[key] ?? ''
+        return `${encodeURIComponent(key)}=${encodeURIComponent(String(raw))}`
       })
       // 拼接
       .join('&')

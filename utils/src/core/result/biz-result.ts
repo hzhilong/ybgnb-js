@@ -1,5 +1,5 @@
-import { CommonError } from './error.js'
 import { getErrorMessage } from '../utils/error.js'
+import { CommonError } from '../error/common-error.js'
 
 /**
  * 业务执行结果
@@ -38,17 +38,5 @@ export class BizResult<T> {
     } else {
       throw new CommonError(this.msg)
     }
-  }
-}
-
-/**
- * 执行业务（自动包裹BuResult）
- * @param run 执行方法
- */
-export const execBiz = async <T>(run: () => Promise<T>): Promise<BizResult<T>> => {
-  try {
-    return BizResult.createSuccess<T>(await run())
-  } catch (e) {
-    return BizResult.createError(e)
   }
 }

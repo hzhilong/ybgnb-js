@@ -1,11 +1,4 @@
-/**
- * 判断一个值是否为纯对象
- */
-export function isPlainObject(value: unknown): value is Record<string, unknown> {
-  if (value === null || typeof value !== 'object') return false
-  const proto = Object.getPrototypeOf(value)
-  return proto === Object.prototype || proto === null
-}
+import { isPlainObject } from './type.js'
 
 /**
  * 递归移除对象（或数组）中的所有函数属性，返回一个可安全序列化的副本。

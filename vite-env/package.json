@@ -26,7 +26,7 @@
     "dist"
   ],
   "scripts": {
-    "check": "tsc --noEmit && eslint .",
+    "check": "tsc --build --noEmit",
     "lint": "eslint . --fix",
     "npm login": " npm login",
     "npm publish": " npm publish --access public",
