@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
+    "rootDir": "./",
     "target": "ES2020",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
@@ -10,6 +10,7 @@
     "types": [
       "node"
     ],
+    "allowJs": true,
     "strict": true,
     // 类型导入必须使用 type
     "verbatimModuleSyntax": true,
@@ -26,12 +27,14 @@
     // 生成 source map
     "sourceMap": true,
     // 禁用增量编译
-    "incremental": false
+    "incremental": false,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    // 忽略弃用警告
+    "ignoreDeprecations": "6.0"
   },
   "include": [
-    "src/node/**/*.ts",
-    "src/node.ts",
-    "src/core",
+    "src/node/**/*",
+    "src/core/**/*"
   ],
   "exclude": [
     "node_modules",

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
+    "rootDir": "./",
     "target": "ES2020",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
@@ -24,11 +24,13 @@
     // 生成 source map
     "sourceMap": true,
     // 禁用增量编译
-    "incremental": false
+    "incremental": false,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    // 忽略弃用警告
+    "ignoreDeprecations": "6.0"
   },
   "include": [
-    "src/dom/**/*.ts",
-    "src/dom.ts"
+    "src/dom/**/*"
   ],
   "exclude": [
     "node_modules",

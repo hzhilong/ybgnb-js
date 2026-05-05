@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises'
+import { mkdirSync } from 'node:fs'
 
 /**
  * 判断路径是否是文件
@@ -26,8 +27,8 @@ export async function existsFile(file: string, mode?: number) {
 /**
  * 确保目录存在
  */
-export async function ensureDirSync(dirPath: string) {
-  fs.mkdir(dirPath, { recursive: true })
+export function ensureDirSync(dirPath: string) {
+  mkdirSync(dirPath, { recursive: true })
 }
 
 /**
