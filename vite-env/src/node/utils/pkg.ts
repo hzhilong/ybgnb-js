@@ -1,12 +1,32 @@
-import { findPackageJSON } from 'node:module'
 import * as fs from 'node:fs'
 import type { AppPackageJSON } from '../../common/index.js'
+import * as path from 'node:path'
+import { dirname } from 'node:path'
+
+/**
+ * 向上查找最近的 package.json
+ * @param start
+ */
+export function findNearestPkg(start = process.cwd()) {
+  let dir = start
+  const root = path.parse(dir).root
+
+  while (true) {
+    const file = path.join(dir, 'package.json')
+    if (fs.existsSync(file)) {
+      return file
+    }
+
+    if (dir === root) return null
+    dir = dirname(dir)
+  }
+}
 
 /**
  * 读取 packageJson
  */
 export function readPackageJson(proRoot: string): AppPackageJSON {
-  const pkgPath = findPackageJSON(proRoot)
+  const pkgPath = findNearestPkg(proRoot)
   if (!pkgPath) throw new Error('暂未找到 package.json')
   const content = fs.readFileSync(pkgPath, 'utf8')
   return JSON.parse(content)

@@ -7,7 +7,6 @@
     "ignoreDeprecations": "6.0"
   },
   "include": [
-    "scripts",
     "*.ts"
   ]
 }
