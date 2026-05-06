@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.node.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    // 忽略弃用警告
+    "ignoreDeprecations": "6.0"
+  },
+  "include": ["src/cli/**/*", "*.ts"]
+}

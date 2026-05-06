@@ -2,13 +2,13 @@
   "files": [],
   "references": [
     {
-      "path": "./tsconfig.browser.json"
+      "path": "./tsconfig.common.json"
     },
     {
       "path": "./tsconfig.node.json"
     },
     {
-      "path": "./tsconfig.common.json"
+      "path": "./tsconfig.scripts.json"
     }
   ]
 }
