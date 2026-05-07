@@ -22,7 +22,7 @@ export default defineConfig([
     ...baseConfig,
     platform: 'neutral',
     entry: {
-      types: resolve(root, 'src/common/index.ts'),
+      common: resolve(root, 'src/common/index.ts'),
     },
     tsconfig: resolve(root, `tsconfig.common.json`),
     external: ['vite'],

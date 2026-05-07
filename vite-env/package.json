@@ -1,6 +1,6 @@
 {
   "name": "@ybgnb/vite-env",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "hzhilong",
   "type": "module",
   "productName": "@ybgnb/vite-env",
@@ -14,9 +14,9 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./types": {
-      "types": "./dist/types.d.ts",
-      "import": "./dist/types.js"
+    "./common": {
+      "types": "./dist/common.d.ts",
+      "import": "./dist/common.js"
     }
   },
   "files": [
