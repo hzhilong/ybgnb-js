@@ -1,5 +1,4 @@
 import { getErrorMessage } from '../utils/error.js'
-import { CommonError } from '../error/common-error.js'
 
 /**
  * 业务执行结果
@@ -8,6 +7,7 @@ export class BizResult<T> {
   success: boolean
   msg: string
   data?: T
+  errorName?: string
 
   constructor(success: boolean, msg: string, data?: T) {
     this.success = success
@@ -24,7 +24,11 @@ export class BizResult<T> {
   }
 
   static createError<T>(e: unknown) {
-    return new BizResult<T>(false, getErrorMessage(e))
+    const bizResult = new BizResult<T>(false, getErrorMessage(e))
+    if (e && typeof e === 'object' && 'name' in e && typeof e.name === 'string') {
+      bizResult.errorName = e.name
+    }
+    return bizResult
   }
 
   /**
@@ -36,7 +40,9 @@ export class BizResult<T> {
     if (this.success) {
       return this.data as T
     } else {
-      throw new CommonError(this.msg)
+      const error = new Error(this.msg)
+      if (this.errorName) error.name = this.errorName
+      throw error
     }
   }
 }
