@@ -1,3 +1,5 @@
+import { createAbortError } from './error.js'
+
 /**
  * 支持取消的 sleep
  * @param ms      延迟毫秒数
@@ -5,7 +7,7 @@
  */
 export function sleep(ms: number, signal?: AbortSignal) {
   return new Promise<void>((resolve, reject) => {
-    if (signal?.aborted) return reject(new Error('取消操作'))
+    if (signal?.aborted) return reject(createAbortError())
 
     const timer = setTimeout(() => {
       cleanup()
@@ -15,7 +17,7 @@ export function sleep(ms: number, signal?: AbortSignal) {
     const onAbort = () => {
       clearTimeout(timer)
       cleanup()
-      reject(new Error('取消操作'))
+      reject(createAbortError())
     }
 
     const cleanup = () => {

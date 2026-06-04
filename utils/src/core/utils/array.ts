@@ -20,3 +20,10 @@ export function chunk<T>(arr: T[], size: number): T[][] {
   }
   return result
 }
+
+/**
+ * 判断数组是否存在某些项
+ */
+export function inArray<T>(value: T, array: readonly T[]): boolean {
+  return array.includes(value)
+}

@@ -1,15 +1,17 @@
+import { getErrorMessage } from '../utils/error.js'
+
 /**
  * 通用错误
  */
 export class CommonError extends Error {
   // 原始错误
-  rawError?: Error
+  cause?: Error
 
-  constructor(message: string, rawError?: unknown) {
+  constructor(message: string, cause?: unknown) {
     super(message)
 
-    if (rawError !== undefined) {
-      this.rawError = rawError instanceof Error ? rawError : new Error(String(rawError))
+    if (cause !== undefined) {
+      this.cause = cause instanceof Error ? cause : new Error(getErrorMessage(cause))
     }
 
     this.name = new.target.name
@@ -17,6 +19,6 @@ export class CommonError extends Error {
   }
 
   toString() {
-    return `${this.name}: ${this.message}${this.rawError ? ` (caused by ${this.rawError})` : ''}`
+    return `${this.name}: ${this.message}${this.cause ? ` (caused by ${this.cause})` : ''}`
   }
 }

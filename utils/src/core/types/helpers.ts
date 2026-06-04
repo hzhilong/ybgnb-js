@@ -69,3 +69,14 @@ export type FunctionKeys<T> = {
 export type ObjectWithKeys<K extends string | symbol> = {
   [key in K]: any
 }
+
+/**
+ * 只存在一个字段
+ */
+export type ExactlyOne<T> = {
+  [K in keyof T]: {
+    [P in K]: T[P]
+  } & {
+    [P in Exclude<keyof T, K>]?: never
+  }
+}[keyof T]

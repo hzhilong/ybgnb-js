@@ -1,4 +1,6 @@
 import { isPlainObject } from './type.js'
+import { getErrorMessage } from './error.js'
+import type { BizError } from '../types/biz-result.js'
 
 /**
  * 递归移除对象（或数组）中的所有函数属性，返回一个可安全序列化的副本。
@@ -56,19 +58,20 @@ export function stripFunctions<T>(value: T, seen = new WeakMap<object, any>()): 
 }
 
 /**
- * 将错误转换为可 JSON 序列化的普通对象。
+ * 序列号错误对象 为 BizError
  */
-export function serializeError(err: unknown) {
-  if (err instanceof Error) {
+export function serializeError(err: unknown): BizError {
+  if (!(err instanceof Error)) {
     return {
-      name: err.name,
-      message: err.message,
-      stack: err.stack,
+      name: 'UnknownError',
+      message: getErrorMessage(err),
     }
   }
 
   return {
-    name: 'Error',
-    message: String(err),
+    name: err.name,
+    message: err.message,
+    stack: err.stack,
+    cause: 'cause' in err && err.cause ? serializeError(err.cause) : undefined,
   }
 }
