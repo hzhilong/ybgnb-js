@@ -3,7 +3,7 @@ import { CommonError } from '../error/common-error.js'
 /**
  * 是否为取消操作的错误
  */
-export function isCanceledError(err: unknown): boolean {
+export function isCanceledError(err: unknown): err is Error {
   if (!(err instanceof Error)) return false
 
   return err.name === 'AbortError' || err.name === 'CanceledError' || ('code' in err && err.code === 'ERR_CANCELED')

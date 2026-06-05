@@ -1,4 +1,4 @@
-import type { BizResult } from '../types/biz-result.js'
+import type { BizResult, BizError } from '../types/biz-result.js'
 import { serializeError } from './serialize.js'
 
 /**
@@ -17,14 +17,14 @@ export function isBizResult<T = unknown>(result: unknown): result is BizResult<T
 
 /**
  * 执行异步函数，自动捕获异常并转换为 BizResult 对象
- * @param run 执行方法
+ * @param runFn 执行方法
  */
-export const execBiz = async <T>(run: () => Promise<T>): Promise<BizResult<T>> => {
+export const execBiz = async <T>(runFn: () => T | Promise<T>): Promise<BizResult<Awaited<T>>> => {
   try {
     return {
       success: true,
       msg: '操作成功',
-      data: await run(),
+      data: await runFn(),
     }
   } catch (e) {
     return {
@@ -47,11 +47,15 @@ export async function unwrapBizResult<T>(result: BizResult<T> | unknown): Promis
     }
 
     if (result.error) {
-      throw Object.assign(new Error(), result.error)
+      throw bizErrorToError(result.error)
     }
 
     throw new Error(result.msg)
   } else {
     return result
   }
+}
+
+export function bizErrorToError(bizError: BizError) {
+  return Object.assign(new Error(), bizError)
 }
