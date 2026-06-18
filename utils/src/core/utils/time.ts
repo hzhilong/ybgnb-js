@@ -24,7 +24,7 @@ export function getFormattedDateTime(date?: Date): string {
 }
 
 /**
- * 格式化时间为 2020-02-02 20:20:20 的字符串
+ * 格式化时间为 2020-02-02 的字符串
  * @param date 需要格式化的时间，为空则获取当前时间
  */
 export function getFormattedDate(date?: Date): string {

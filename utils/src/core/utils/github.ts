@@ -67,5 +67,5 @@ export function parseGithubRawUrl(gitHubRepoFile: GitHubRepoFile) {
  * @param gitHubRepoFile
  */
 export async function getGithubRawJson<O>(gitHubRepoFile: GitHubRepoFile): Promise<O> {
-  return JSON.parse(await fetchWithFormat(parseGithubRawUrl(gitHubRepoFile), 'json')) as O
+  return await fetchWithFormat(parseGithubRawUrl(gitHubRepoFile), 'json')
 }

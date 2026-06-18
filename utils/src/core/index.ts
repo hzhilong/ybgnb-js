@@ -6,6 +6,7 @@ export * from "./types/physical.js";
 export * from "./utils/abort.js";
 export * from "./utils/array.js";
 export * from "./utils/biz-result.js";
+export * from "./utils/bytes.js";
 export * from "./utils/error.js";
 export * from "./utils/fetch.js";
 export * from "./utils/function.js";
