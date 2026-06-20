@@ -54,3 +54,22 @@ export function formatTime(timestamp: number | string | Date | undefined): strin
     return new Date(num < 1e12 ? num * 1000 : num).toLocaleString()
   }
 }
+
+/**
+ * 获取文件名时间戳，例如 2026-06-19_14-30-25
+ * @param date
+ */
+export function formatFileTimestamp(date?: Date): string {
+  if (!date) {
+    date = new Date()
+  }
+  const d = !isNaN(date.getTime()) ? date : new Date()
+  const year = d.getFullYear()
+  const month = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  const hours = String(d.getHours()).padStart(2, '0')
+  const minutes = String(d.getMinutes()).padStart(2, '0')
+  const seconds = String(d.getSeconds()).padStart(2, '0')
+
+  return `${year}-${month}-${day}_${hours}_${minutes}_${seconds}`
+}

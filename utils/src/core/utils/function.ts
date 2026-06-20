@@ -73,3 +73,43 @@ export function dynamicCall<T = any>(root: any, path: string, ...args: any[]): T
   }
   return fn.apply(context, args)
 }
+
+/**
+ * 为任务添加执行生命周期钩子。
+ *
+ * 支持在任务执行前、成功后以及结束后插入额外逻辑，
+ * 可用于日志记录、状态切换、加载提示等场景。
+ *
+ * 执行顺序：
+ * before -> task -> success -> finally
+ *
+ * 注意：
+ * - success 仅在任务执行成功时触发
+ * - finally 无论成功或失败都会触发
+ *
+ * @param task 要执行的任务（函数或 Promise）
+ * @param hooks 生命周期钩子
+ * @returns 包装后的异步任务函数
+ */
+export function withHooks<TArgs extends any[] = [], TReturn = void>(
+  task: ((...args: TArgs) => TReturn | Promise<TReturn>) | Promise<TReturn>,
+  hooks?: {
+    before?: () => void | Promise<void>
+    success?: () => void | Promise<void>
+    finally?: () => void | Promise<void>
+  },
+) {
+  return async (...args: TArgs): Promise<TReturn> => {
+    try {
+      await hooks?.before?.()
+
+      const result = typeof task === 'function' ? await task(...args) : await task
+
+      await hooks?.success?.()
+
+      return result
+    } finally {
+      await hooks?.finally?.()
+    }
+  }
+}
