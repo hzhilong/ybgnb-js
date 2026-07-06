@@ -73,3 +73,39 @@ export function formatFileTimestamp(date?: Date): string {
 
   return `${year}-${month}-${day}_${hours}_${minutes}_${seconds}`
 }
+
+/**
+ * 获取文件名时间戳，例如 2026-06-19
+ * @param date
+ */
+export function formatFileDate(date?: Date): string {
+  if (!date) {
+    date = new Date()
+  }
+  const d = !isNaN(date.getTime()) ? date : new Date()
+  const year = d.getFullYear()
+  const month = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+
+  return `${year}-${month}-${day}`
+}
+
+/**
+ * 将秒数格式化为 MM:SS 或 HH:MM:SS
+ * @example formatDuration(125) // "02:05"
+ * @example formatDuration(3665) // "01:01:05"
+ */
+export function formatDuration(totalSeconds: number): string {
+  const safeSeconds = Math.max(0, Math.floor(totalSeconds))
+  const hours = Math.floor(safeSeconds / 3600)
+  const minutes = Math.floor((safeSeconds % 3600) / 60)
+  const seconds = safeSeconds % 60
+
+  const parts = [hours, minutes, seconds]
+  const startIndex = hours > 0 ? 0 : 1
+
+  return parts
+    .slice(startIndex)
+    .map((v) => String(v).padStart(2, '0'))
+    .join(':')
+}

@@ -81,7 +81,7 @@ export function dynamicCall<T = any>(root: any, path: string, ...args: any[]): T
  * 可用于日志记录、状态切换、加载提示等场景。
  *
  * 执行顺序：
- * before -> task -> success -> finally
+ * before -> task -> success/error -> finally
  *
  * 注意：
  * - success 仅在任务执行成功时触发
@@ -93,23 +93,27 @@ export function dynamicCall<T = any>(root: any, path: string, ...args: any[]): T
  */
 export function withHooks<TArgs extends any[] = [], TReturn = void>(
   task: ((...args: TArgs) => TReturn | Promise<TReturn>) | Promise<TReturn>,
-  hooks?: {
+  hooks: {
     before?: () => void | Promise<void>
-    success?: () => void | Promise<void>
+    success?: (result: Awaited<TReturn>) => void | Promise<void>
+    error?: (e: unknown) => void | Promise<void>
     finally?: () => void | Promise<void>
   },
 ) {
   return async (...args: TArgs): Promise<TReturn> => {
     try {
-      await hooks?.before?.()
+      await hooks.before?.()
 
       const result = typeof task === 'function' ? await task(...args) : await task
 
-      await hooks?.success?.()
+      await hooks.success?.(result)
 
       return result
+    } catch (error) {
+      await hooks.error?.(error)
+      throw error
     } finally {
-      await hooks?.finally?.()
+      await hooks.finally?.()
     }
   }
 }

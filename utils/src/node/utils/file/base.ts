@@ -17,7 +17,7 @@ export async function isFile(filePath: string) {
  */
 export async function existsFile(file: string, mode?: number) {
   try {
-    fs.access(file, mode)
+    await fs.access(file, mode)
     return true
   } catch {
     return false
