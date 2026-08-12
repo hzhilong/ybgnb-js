@@ -80,3 +80,9 @@ export type ExactlyOne<T> = {
     [P in Exclude<keyof T, K>]?: never
   }
 }[keyof T]
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+export type NonFunction<T> = T extends Function ? never : T
+
+export type MaybePromise<T> = T | Promise<T>
+export type Resolver<T> = (() => MaybePromise<T>) | T

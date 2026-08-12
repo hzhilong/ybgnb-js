@@ -51,7 +51,7 @@ export function formatTime(timestamp: number | string | Date | undefined): strin
     const num = typeof timestamp === 'string' ? Number(timestamp) : timestamp
     if (isNaN(num)) return ''
 
-    return new Date(num < 1e12 ? num * 1000 : num).toLocaleString()
+    return getFormattedDateTime(new Date(num < 1e12 ? num * 1000 : num))
   }
 }
 
@@ -108,4 +108,22 @@ export function formatDuration(totalSeconds: number): string {
     .slice(startIndex)
     .map((v) => String(v).padStart(2, '0'))
     .join(':')
+}
+
+/**
+ * 获取起始日期到结束日期之间的所有月份（按月首日）
+ * @param startDate 起始日期（只取年月，忽略日）
+ * @param endDate 结束日期（只取年月，忽略日）
+ * @returns 包含从起始月到结束月每个月的第一天日期的数组，按时间升序排列
+ */
+export function getMonthRange(startDate: Date, endDate: Date): Date[] {
+  const start = new Date(startDate.getFullYear(), startDate.getMonth(), 1)
+  const end = new Date(endDate.getFullYear(), endDate.getMonth(), 1)
+  const months: Date[] = []
+  const current = new Date(start)
+  while (current <= end) {
+    months.push(new Date(current))
+    current.setMonth(current.getMonth() + 1)
+  }
+  return months
 }
