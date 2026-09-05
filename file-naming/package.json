@@ -1,6 +1,6 @@
 {
   "name": "@ybgnb/file-naming",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "hzhilong",
   "private": false,
   "description": "文件命名模板解析器",

@@ -11,4 +11,15 @@ export interface ResolveFilePathResult {
    * 路径片段（按路径分隔符拆分后的各级目录/文件名，不对应命名字段）
    */
   segments: string[]
+
+  /**
+   * 相对路径的目录
+   * @example test/
+   */
+  dir: '' | string
+
+  /**
+   * 文件名
+   */
+  fileName: string
 }

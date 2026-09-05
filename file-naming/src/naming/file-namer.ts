@@ -74,11 +74,13 @@ export class FileNamer<TData = unknown> {
 
     const segments = this.buildPathSegments(fieldValues)
 
-    const transformedSegments = segments.filter(Boolean).map(this.pathSegmentTransformer)
+    const transformedSegments = segments.filter(Boolean).map(this.pathSegmentTransformer).filter(Boolean)
 
     return {
       segments: transformedSegments,
       relativePath: transformedSegments.join('/'),
+      fileName: transformedSegments[transformedSegments.length - 1],
+      dir: transformedSegments.length > 1 ? transformedSegments.slice(0, -1).join('/') : '',
     }
   }
 
