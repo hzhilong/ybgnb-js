@@ -1,8 +1,0 @@
-{
-  "directory": "./src",
-  "name": "index.ts",
-  "location": "below",
-  "noHeader": true,
-  "delete": true,
-  "exclude": "^.*\\.d\\.ts$"
-}
