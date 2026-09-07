@@ -52,10 +52,13 @@ export class FileNamer<TData = unknown> {
     return segments
   }
 
-  private resolveOne(data: TData): ResolveFilePathResult {
+  private resolveOne(
+    data: TData,
+    { serialNumber, total }: { serialNumber: number; total: number } = { serialNumber: 1, total: 1 },
+  ): ResolveFilePathResult {
     const context: FileNamingContext<TData> = {
-      total: 1,
-      serialNumber: 1,
+      total: total,
+      serialNumber: serialNumber,
       extendedFormats: this.strategy.extendedFormats,
       resolveDate: new Date(),
       data: data,
@@ -88,7 +91,12 @@ export class FileNamer<TData = unknown> {
   resolve(data: TData[]): ResolveFilePathResult[]
   resolve(data: TData | TData[]): ResolveFilePathResult | ResolveFilePathResult[] {
     if (Array.isArray(data)) {
-      return data.map((item) => this.resolveOne(item))
+      return data.map((item, index) =>
+        this.resolveOne(item, {
+          total: data.length,
+          serialNumber: index + 1,
+        }),
+      )
     }
     return this.resolveOne(data)
   }
